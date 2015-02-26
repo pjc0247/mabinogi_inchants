@@ -8,6 +8,7 @@ keyword = ''
 xpath = '/html/body/div[1]/div[3]/div[1]/table/tr[position()>1]'
 
 doc = Net::HTTP.get(URI(uri+URI::encode(keyword)))
+
 html = Nokogiri::HTML(doc)
 
 chunks = html.xpath(xpath)
@@ -20,8 +21,14 @@ chunks.each do |chunk|
     data = OpenStruct.new
     data.fix = contents[0].text
     data.rank = contents[1].text
-    data.name = contents[2].text
     data.position = sub_contents[0].text
+    data.name = lambda do 
+      result = ""
+      contents[2].children.each do |name|
+        result += name.text + "|"
+      end
+      return result
+    end.call
     data.effects = lambda do 
       result = ""
       sub_contents[1..-1].each do |effect|
