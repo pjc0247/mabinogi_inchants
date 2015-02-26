@@ -4,7 +4,7 @@ require 'ostruct'
 require 'json'
 
 uri = "http://mabinogi.inexeed.com/enchant/?kname="
-keyword = ''
+keyword = '' # 검색 키워드
 xpath = '/html/body/div[1]/div[3]/div[1]/table/tr[position()>1]'
 
 doc = Net::HTTP.get(URI(uri+URI::encode(keyword)))
