@@ -1,4 +1,4 @@
-# mabinogi_inchants_search
+# mabinogi_inchants
 마비노기 인챈트 검색기 (사실크롤러)
 <BR>
 이름으로 검색 가능
